@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <Searchbar />
       {data.map((pic, index) => (
-        <div kex={index} className="pic_container">
+        <div key={index} className="pic_container">
           <img src={pic.image} />
           <div className="content_container">
           <div /* className="name_container" */><h3>{pic.title}</h3></div>
