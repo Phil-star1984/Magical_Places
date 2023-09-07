@@ -3,27 +3,41 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Searchbar from "./Searchbar";
 
-export default function Home() {
-  const [data, setData] = useState([]);
+export default function HomeNew() {
+  const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setData(json));
+    axios
+      .get(
+        "https://cdn.contentful.com/spaces/2w9yxl4o2fyy/environments/master/entries?access_token=MNVzh3524dp7m4Nihpw3Zm2ejz8unr_zTJ2BisD3_Ao"
+      )
+      .then((response) => setPlaces(response.data.items));
+
+    /* console.log(places);
+    console.log(places[0].sys.createdAt); */
   }, []);
 
-  console.log(data);
+  /* Zugriff auf einzelne Places-Einträge
+  console.log(places[0].fields); */
 
   return (
     <>
       <Searchbar />
-      {data.map((pic, index) => (
-        <div key={index} className="pic_container">
-          <img src={pic.image} />
-          <div className="content_container">
-          <div /* className="name_container" */><h3>{pic.title}</h3></div>
-          <div /* className="price_container" */><h3>{pic.price},-€</h3></div>
-          <div /* className="description_container" */><p>{pic.description}</p></div>
+
+      {places.map((place, index) => (
+        <div
+          className="test"
+          key={index}
+          style={{
+            backgroundImage: `url(${place.fields.imgUrl})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div>
+            <h1>{place.fields.name}</h1>
+            <p>{place.fields.description}</p>
+            <p>Posted at: {place.sys.createdAt}</p>
           </div>
         </div>
       ))}

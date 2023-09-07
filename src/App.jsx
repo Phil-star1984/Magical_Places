@@ -5,9 +5,9 @@ import "./App.css";
 import Navbar from "/components/Navbar";
 import Home from "/components/Home";
 import Footer from "/components/Footer.jsx";
-import Test from "/components/Test.jsx";
 import About from "/components/About.jsx";
 import SinglePlace from "/components/SinglePlace.jsx";
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,14 +21,16 @@ function App() {
       </h1>
 
       <Navbar />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/webdevs" element={<Test />} />
-        <Route path="/imprint" element={<Test />} />
-        <Route path="/places/:id" element={<SinglePlace />} />
+        <Route path="/webdevs" element={<About />} />
+        <Route path="/imprint" element={<About />} />
+        <Route path="/place/:id" element={<SinglePlace />} />
         {/* <Route path="/*" element={<Home />} /> */}
       </Routes>
+  
       <Footer />
     </>
   );
