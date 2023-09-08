@@ -6,13 +6,17 @@ import Searchbar from "./Searchbar";
 export default function HomeNew() {
   const [places, setPlaces] = useState([]);
 
+/*   VITE_SPACE_ID=uagdxbu69gen
+VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
+
   useEffect(() => {
     axios
       .get(
-        "https://cdn.contentful.com/spaces/2w9yxl4o2fyy/environments/master/entries?access_token=MNVzh3524dp7m4Nihpw3Zm2ejz8unr_zTJ2BisD3_Ao"
+        "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk"
       )
       .then((response) => setPlaces(response.data.items));
 
+    
     /* console.log(places);
     console.log(places[0].sys.createdAt); */
   }, []);
@@ -35,7 +39,8 @@ export default function HomeNew() {
           }}
         >
           <div>
-            <h1>{place.fields.name}</h1>
+            <h1>{place.fields.placeName}</h1>
+            <h3>{place.fields.country}</h3>
             <p>{place.fields.description}</p>
             <p>Posted at: {place.sys.createdAt}</p>
           </div>
