@@ -5,26 +5,32 @@ import "./App.css";
 import Navbar from "/components/Navbar";
 import Home from "/components/Home";
 import Footer from "/components/Footer.jsx";
-import Test from "/components/Test.jsx";
 import About from "/components/About.jsx";
+import SinglePlace from "/components/SinglePlace.jsx";
+
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <a className="logo" href="/">
-        <h1>
+      <h1>
+        <a id="logo" href="/">
           MAGICAL <br /> PLACES
-        </h1>
-      </a>
+        </a>
+      </h1>
+
       <Navbar />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/webdevs" element={<Test />} />
-        <Route path="/imprint" element={<Test />} />
+        <Route path="/webdevs" element={<About />} />
+        <Route path="/imprint" element={<About />} />
+        <Route path="/place/:id" element={<SinglePlace />} />
+        {/* <Route path="/*" element={<Home />} /> */}
       </Routes>
+  
       <Footer />
     </>
   );

@@ -3,30 +3,51 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Searchbar from "./Searchbar";
 
-export default function Home() {
-  const [data, setData] = useState([]);
+export default function HomeNew() {
+  const [places, setPlaces] = useState([]);
+
+  /*   VITE_SPACE_ID=uagdxbu69gen
+VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setData(json));
+    axios
+      .get(
+        "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk"
+      )
+      .then((response) => setPlaces(response.data.items));
+
+    /* console.log(places);
+    console.log(places[0].sys.createdAt); */
   }, []);
 
-  console.log(data);
+  /* Zugriff auf einzelne Places-Einträge
+  console.log(places[0].fields); */
 
   return (
     <>
       <Searchbar />
-      {data.map((pic, index) => (
-        <div kex={index} className="pic_container">
-          <img src={pic.image} />
-          <div className="content_container">
-          <div /* className="name_container" */><h3>{pic.title}</h3></div>
-          <div /* className="price_container" */><h3>{pic.price},-€</h3></div>
-          <div /* className="description_container" */><p>{pic.description}</p></div>
+      <div className="test_outer">
+        {places.map((place, index) => (
+          <div
+            className="test"
+            key={index}
+            style={{
+              /* backgroundImage: `url(${place.fields.img})`, */
+              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(${place.fields.img})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="test_inner">
+              <h1>{place.fields.placeName}</h1>
+              <h3>{place.fields.country}</h3>
+              <p>Description: {place.fields.description}</p>
+              <p>Posted at: {place.sys.createdAt}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }
