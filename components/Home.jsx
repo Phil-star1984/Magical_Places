@@ -14,7 +14,10 @@ VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
       .get(
         "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk"
       )
-      .then((response) => setPlaces(response.data.items));
+      .then((response) => {
+        setPlaces(response.data.items);
+        console.log(response.data.items);
+      });
 
     
     /* console.log(places);
@@ -26,7 +29,7 @@ VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
 
   return (
     <>
-      <Searchbar />
+      {/* <Searchbar /> */}
 
       {places.map((place, index) => (
         <div

@@ -8,20 +8,21 @@ import Footer from "/components/Footer.jsx";
 import About from "/components/About.jsx";
 import SinglePlace from "/components/SinglePlace.jsx";
 
-
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <h1>
+      {/* <h1>
         <a id="logo" href="/">
           MAGICAL <br /> PLACES
         </a>
-      </h1>
+      </h1> */}
 
-      <Navbar />
-      
+      <header>
+        <Navbar />
+      </header>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -30,7 +31,7 @@ function App() {
         <Route path="/place/:id" element={<SinglePlace />} />
         {/* <Route path="/*" element={<Home />} /> */}
       </Routes>
-  
+
       <Footer />
     </>
   );

@@ -1,14 +1,41 @@
-import React from "react";
+import {React, useState} from "react";
 import { Link, NavLink } from "react-router-dom";
+import "./Navbar.css";
+import logo from '../src/assets/123.png';
 
 export default function Navbar() {
+  const [isNavExpanded, setIsNavExpanded] = useState(false)
+
   return (
-    <>
-      <ul className="nav_list">
-        <li><NavLink to="/about" activeClassName="active">ABOUT</NavLink></li>
-        <li><NavLink to="/webdevs" activeClassName="active">WEBDEVS</NavLink></li>
-        <li><NavLink to="/imprint" activeClassName="active">IMPRINT</NavLink></li>
-      </ul>
-    </>
+    <nav className="navigation">
+      <a href="/" className="brand-name">
+        Logo
+      </a>
+      <button
+        className="hamburger"
+        onClick={() => {
+          setIsNavExpanded(!isNavExpanded)
+        }}
+      >
+        <img src={logo} alt="Logo" className="burger"/>
+      </button>
+      <div
+        className={
+          isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
+        }
+      >
+        <ul>
+          <li>
+            <a href="/home">Home</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="/contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
