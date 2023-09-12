@@ -25,7 +25,7 @@ VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
 
   return (
     <>
-      <Searchbar />
+      {/* <Searchbar /> */}
       <div className="test_outer">
         {places.map((place, index) => (
           <div
