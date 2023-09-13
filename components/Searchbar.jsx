@@ -1,9 +1,11 @@
+
+
 export default function Searchbar() {
   return (
     <>
-      <form className="form-inline my-2 my-lg-0">
+      <form className="form-inline">
         <input
-          className="form-control mr-sm-2"
+          className="form-control "
           type="search"
           placeholder="Search Places"
         />
