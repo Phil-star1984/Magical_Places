@@ -1,11 +1,11 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
-import logo from '../src/assets/123.png';
+import logo from "../src/assets/123.png";
 import Searchbar from "./Searchbar";
 
 export default function Navbar() {
-  const [isNavExpanded, setIsNavExpanded] = useState(false)
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
     <nav className="navigation">
@@ -16,10 +16,10 @@ export default function Navbar() {
       <button
         className="hamburger"
         onClick={() => {
-          setIsNavExpanded(!isNavExpanded)
+          setIsNavExpanded(!isNavExpanded);
         }}
       >
-        <img src={logo} alt="Logo" className="burger"/>
+        <img src={logo} alt="Logo" className="burger" />
       </button>
       <div
         className={

@@ -7,6 +7,7 @@ import Home from "/components/Home";
 import Footer from "/components/Footer.jsx";
 import About from "/components/About.jsx";
 import SinglePlace from "/components/SinglePlace.jsx";
+import BlogDetails from "/components/BlogDetails.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -29,7 +30,8 @@ function App() {
         <Route path="/webdevs" element={<About />} />
         <Route path="/imprint" element={<About />} />
         <Route path="/place/:id" element={<SinglePlace />} />
-        {/* <Route path="/*" element={<Home />} /> */}
+        <Route path="/blogDetails/:id" element={<BlogDetails />} />
+        {/* <Route path="/details/:id" element={<Details />} /> */}
       </Routes>
 
       <Footer />
