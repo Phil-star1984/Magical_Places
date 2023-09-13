@@ -43,7 +43,7 @@
   width: 40px;
   padding: 0.5rem;
   border-radius: 50%;
-  background-color: #283b8b;
+  background-color: transparent;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   position: absolute;
@@ -54,7 +54,7 @@
 }
 
 .hamburger:hover {
-  background-color: #2642af;
+  background-color: transparent;
 }
 
 .burger {
