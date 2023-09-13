@@ -7,11 +7,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-function NavBarScroll() {
+function NavBarScroll({ searchQuery, onSearchQueryChange }) {
+  /* console.log(searchQuery); */
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">
+        <Navbar.Brand className="brand_name" href="/">
           <h2>
             WHERE
             <br />
@@ -47,6 +49,8 @@ function NavBarScroll() {
               placeholder="Search Country"
               className="me-2"
               aria-label="Search"
+              value={searchQuery}
+              onChange={(e) => onSearchQueryChange(e.target.value)}
             />
             <Button variant="outline-success">Search</Button>
           </Form>

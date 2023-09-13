@@ -5,24 +5,45 @@ import NavBarScroll from "/components/NavBarScroll.jsx";
 
 export default function HomeNew() {
   const [places, setPlaces] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
+  console.log(searchQuery);
+
+  const URL =
+    "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk&content_type=travellingDestinations";
+
+  const filterPlaces = () => {
+    if (searchQuery === "") {
+      axios.get(URL).then((response) => setPlaces(response.data.items));
+    } else {
+      axios
+        .get(URL)
+        .then((response) =>
+          setPlaces(
+            response.data.items.filter((place) =>
+              place.fields.country
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
+            )
+          )
+        );
+    }
+  };
+
+  // Effekt, der auf Änderungen des searchQuery reagiert
   useEffect(() => {
-    axios
-      .get(
-        "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk&content_type=travellingDestinations"
-      )
-      .then((response) => setPlaces(response.data.items));
-
-    /* console.log(places);
-    console.log(places[0].sys.createdAt); */
-  }, []);
+    filterPlaces();
+  }, [searchQuery]);
 
   /* Zugriff auf einzelne Places-Einträge
   console.log(places[0].fields); */
 
   return (
     <>
-      <NavBarScroll />
+      <NavBarScroll
+        searchQuery={searchQuery}
+        onSearchQueryChange={setSearchQuery}
+      />
       <div className="test_outer">
         {places.map((place, index) => (
           <div
