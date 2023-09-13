@@ -1,18 +1,15 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Searchbar from "./Searchbar";
+import NavBarScroll from "/components/NavBarScroll.jsx";
 
 export default function HomeNew() {
   const [places, setPlaces] = useState([]);
 
-  /*   VITE_SPACE_ID=uagdxbu69gen
-VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
-
   useEffect(() => {
     axios
       .get(
-        "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk"
+        "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk&content_type=travellingDestinations"
       )
       .then((response) => setPlaces(response.data.items));
 
@@ -25,14 +22,13 @@ VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
 
   return (
     <>
-      {/* <Searchbar /> */}
+      <NavBarScroll />
       <div className="test_outer">
         {places.map((place, index) => (
           <div
             className="test"
             key={index}
             style={{
-              /* backgroundImage: `url(${place.fields.img})`, */
               backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(${place.fields.img})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",

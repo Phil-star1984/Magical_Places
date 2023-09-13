@@ -43,13 +43,10 @@
 }
 
 .test_outer {
-  margin-top: 2rem;
 }
 
 .test {
-  /* width: 500px;
-  height: 800px; */
-  min-height: 72vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: end;
@@ -62,7 +59,6 @@
 
 .test_inner {
   margin: 0.8rem;
-
 }
 
 .form-control {
