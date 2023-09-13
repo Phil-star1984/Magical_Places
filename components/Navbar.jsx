@@ -2,6 +2,7 @@ import {React, useState} from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import logo from '../src/assets/123.png';
+import Searchbar from "./Searchbar";
 
 export default function Navbar() {
   const [isNavExpanded, setIsNavExpanded] = useState(false)
@@ -11,6 +12,7 @@ export default function Navbar() {
       <a href="/" className="brand-name">
         Logo
       </a>
+      <Searchbar />
       <button
         className="hamburger"
         onClick={() => {
