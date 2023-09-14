@@ -12,6 +12,9 @@ function App() {
 
   return (
     <>
+
+    
+
       <Routes>
         <Route path="/" element={<HomeNew />} />
         <Route path="/about" element={<About />} />
