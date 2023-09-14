@@ -1,39 +1,56 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Searchbar from "./Searchbar";
-import { Link } from "react-router-dom";
+import NavBarScroll from "/components/NavBarScroll.jsx";
+import {Link} from "react-router-dom"
 
 export default function HomeNew() {
   const [places, setPlaces] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  /*   VITE_SPACE_ID=uagdxbu69gen
-VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
+  console.log(searchQuery);
 
+  const URL =
+    "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk&content_type=travellingDestinations";
+
+  const filterPlaces = () => {
+    if (searchQuery === "") {
+      axios.get(URL).then((response) => setPlaces(response.data.items));
+    } else {
+      axios
+        .get(URL)
+        .then((response) =>
+          setPlaces(
+            response.data.items.filter((place) =>
+              place.fields.country
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
+            )
+          )
+        );
+    }
+  };
+
+  // Effekt, der auf Änderungen des searchQuery reagiert
   useEffect(() => {
-    axios
-      .get(
-        "https://cdn.contentful.com/spaces/uagdxbu69gen/environments/master/entries?access_token=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk&content_type=travellingDestinations"
-      )
-      .then((response) => {
-        setPlaces(response.data.items);
-        console.log(response.data.items);
-      });
-  }, []);
+    filterPlaces();
+  }, [searchQuery]);
 
   /* Zugriff auf einzelne Places-Einträge
   console.log(places[0].fields); */
 
   return (
     <>
-      {/* <Searchbar /> */}
+      <NavBarScroll
+        searchQuery={searchQuery}
+        onSearchQueryChange={setSearchQuery}
+      />
       <div className="test_outer">
         {places.map((place, index) => (
           <div
             className="test"
             key={index}
             style={{
-              /* backgroundImage: `url(${place.fields.img})`, */
               backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(${place.fields.img})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -41,12 +58,14 @@ VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
             }}
           >
             <div className="test_inner">
+
               <Link to={`/blogDetails/${place.sys.id}`}>
                 <h1>{place.fields.placeName}</h1>
               </Link>
+
               <h3>{place.fields.country}</h3>
               <p>Description: {place.fields.description}</p>
-              <p>Posted at: {place.fields.publishingDate}</p>
+              <p>Posted at: {place.sys.createdAt}</p>
             </div>
           </div>
         ))}
@@ -54,3 +73,4 @@ VITE_ACCESS_TOKEN=84S6RAOLTOj6erX8CIihN39tOHjBVQyWEuhqbyj9tbk */
     </>
   );
 }
+
