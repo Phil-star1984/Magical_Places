@@ -33,6 +33,11 @@
   display: flex;
 }
 
+div.container-fluid {
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+
 .active {
   color: rgb(255, 85, 0);
 }

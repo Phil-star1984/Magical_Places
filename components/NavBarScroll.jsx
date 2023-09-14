@@ -11,13 +11,19 @@ function NavBarScroll({ searchQuery, onSearchQueryChange }) {
   /* console.log(searchQuery); */
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar
+      sticky="top"
+      bg="dark"
+      data-bs-theme="dark"
+      expand="lg"
+      className="bg-body-tertiary"
+    >
       <Container fluid>
         <Navbar.Brand className="brand_name" href="/">
           <h2>
-            WHERE
+            MAGICAL
             <br />
-            TOGO?
+            PLACES
           </h2>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -52,7 +58,6 @@ function NavBarScroll({ searchQuery, onSearchQueryChange }) {
               value={searchQuery}
               onChange={(e) => onSearchQueryChange(e.target.value)}
             />
-            <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
