@@ -13,6 +13,10 @@
   color: rgb(104, 0, 114);
 }
 
+.brand_name h2 {
+  font-weight: 700;
+}
+
 .nav_list {
   position: sticky;
   top: 30px;
@@ -29,6 +33,11 @@
   display: flex;
 }
 
+div.container-fluid {
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+
 .active {
   color: rgb(255, 85, 0);
 }
@@ -42,14 +51,11 @@
   margin: auto;
 }
 
-.test_outer {
-  margin-top: 2rem;
-}
+/* .test_outer {
+} */
 
 .test {
-  /* width: 500px;
-  height: 800px; */
-  min-height: 72vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: end;
@@ -62,7 +68,14 @@
 
 .test_inner {
   margin: 0.8rem;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.197);
+  border-radius: 15px;
+  padding: 15px;
+}
 
+.test_inner h1 {
+  margin: 0.3rem;
 }
 
 .form-control {
